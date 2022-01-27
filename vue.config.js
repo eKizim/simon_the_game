@@ -1,3 +1,4 @@
 module.exports = {
-  lintOnSave: false
+    publicPath: "/simon_the_game/",
+    lintOnSave: false
 }
