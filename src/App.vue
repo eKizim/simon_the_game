@@ -2,7 +2,6 @@
     <div id="main_container">
         <playground/>
         <h1 class="main_container__title">Simon Says Game</h1>
-        </div>
     </div>
 </template>
 
@@ -11,9 +10,6 @@ import Playground from "./components/Playground";
 
 export default {
     name: "app",
-    data() {
-        return {}
-    },
     components: {
         Playground
     }

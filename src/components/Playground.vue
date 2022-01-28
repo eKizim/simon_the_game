@@ -1,21 +1,21 @@
 <template>
 <div id="playground">
-    <game-info 
-        :numArr="numArr" 
+    <game-info
+        :numArr="numArr"
         :usrArr="usrArr"
-        :level="level" 
+        :level="level"
         :gameStatus ="gameStatus"
         :controllerDisabled="controllerDisabled"
         @start-game="startGame"
         @restart-game="restartGame"
     />
 
-    <game-wheel 
+    <game-wheel
         :disabled="wheelDisabled"
         @step="usrStep"
     />
-            
-    <game-difficulty 
+
+    <game-difficulty
         :numArr="numArr"
         :currentDifficulty="currentDifficulty"
         @choose-difficulty="selectDifficulty"
@@ -56,7 +56,10 @@ export default {
         selectDifficulty(dif) {
             this.currentDifficulty = dif;
         },
-        
+        selectDifficulty(dif) {
+            this.currentDifficulty = dif;
+        },
+
         usrStep(step) {
             if(step !== this.numArr[this.usrArr.length]) { // Game over
                 this.restartGame();
@@ -69,7 +72,7 @@ export default {
             if(this.usrArr.length === this.numArr.length) { // Level passed
                 this.usrArr = [];
                 this.level = this.level + 1;
-                
+
                 this.generateNumArr();
 
                 setTimeout(() => this.levelDemo(), 1000); //Timeout before next level demo
@@ -77,7 +80,7 @@ export default {
                 return this.gameStatus = "win";
             }
         },
-        
+
         generateNumArr() {
             let tempArr = [];
             let length = 2 + this.level;
@@ -89,12 +92,12 @@ export default {
 
             this.numArr = tempArr;
         },
-        
+
         levelDemo() {
             let gameWheel = document.querySelector(".game_wheel");
             gameWheel.style.pointerEvents = "none"; // Disable wheel reaction on user click
             this.gameStatus = "";
-            
+
             this.wheelDisabled = true; // Disable user input comparing
             this.controllerDisabled = true; // Disable buttons
 
@@ -111,7 +114,7 @@ export default {
                 }, i * this.difficulty[this.currentDifficulty]); // Time depends on difficulty level
             }
         },
-        
+
         startGame() {
             this.generateNumArr();
             this.levelDemo();

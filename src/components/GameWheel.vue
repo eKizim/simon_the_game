@@ -1,8 +1,8 @@
 <template>
     <div class="game_wheel" @click="handler">
-        <div 
-            v-for="item in items" 
-            :id="item.color" 
+        <div
+            v-for="item in items"
+            :id="item.color"
             class="wheel_item"
             :key="item.color + ':key'"
             >
@@ -49,27 +49,27 @@ export default {
                 }
             }
         },
-        
+
         makeStep(target) {
             //Find target index to compare it with level sequence
             let ind = Object.values(document.querySelector('.game_wheel').children).indexOf(target);
 
             this.itemToggle(target);
-            
-            return this.$emit("step", ind);                
+
+            return this.$emit("step", ind);
         },
-        
+
         itemToggle(target) {
             target.style.filter = "brightness(1)";
 
             //Sound overlapping
             let allAudio = document.querySelectorAll('audio');
             allAudio.forEach(el => {
-                el.pause(); 
+                el.pause();
                 el.currentTime = 0;
             });
 
-            target.firstElementChild.play(); 
+            target.firstElementChild.play();
             setTimeout(() => target.style.filter = "", 300);
         }
     }
